@@ -7,7 +7,7 @@ functions.  Then it compiles the package. Averaging over 10 compiles and
 subtracting the compile time for 0 statements, we compile times that look
 exponential in the number of `#[instrument]` statements (note the logarithmic y
 axis):
-![Exponential slowdown](timings.png)
+![Exponential slowdown](async.png)
 
 If we replace `#[instrument]` by `#[instrument(err)]`, compile times increase
 drastically.

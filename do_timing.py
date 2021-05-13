@@ -81,6 +81,6 @@ plot(means, stds)
 plot(means_err, stds_err)
 plt.yscale('log')
 plt.legend(['Without (err)', 'With (err)'])
-plt.savefig('timing.png')
+plt.savefig('async.png')
 plt.show()
 
