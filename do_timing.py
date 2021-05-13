@@ -40,12 +40,16 @@ def timeit():
 gen(0, False)
 subprocess.run(["cargo", "build"])
 
-samples = 2
-max_instr = 3
+samples = 10
+max_instr = 8
 means = []
 stds = []
 means_err = []
 stds_err = []
+
+with open("timings.txt", "w") as out:
+    print("# Num\tmean(no err)\t\tstd(no err)\t\tmean(err)\t\tstd(err)", file=out)
+
 for num_instrument in range(max_instr+1):
     print(f"num_instrument = {num_instrument}")
     times = []
@@ -63,9 +67,11 @@ for num_instrument in range(max_instr+1):
     means.append(mean)
     stds.append(std)
 
-    mean, std = mean_std(times_err)
-    means_err.append(mean)
-    stds_err.append(std)
+    mean_err, std_err = mean_std(times_err)
+    means_err.append(mean_err)
+    stds_err.append(std_err)
+    with open("timings.txt", "a") as out:
+        print(f"{num_instrument}\t{mean}\t{std}\t{mean_err}\t{std_err}", file=out)
 
 def plot(means, stds):
     means = np.array(means)
